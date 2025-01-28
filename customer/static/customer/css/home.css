@@ -1,0 +1,144 @@
+/* Home Page Styling */
+.hero {
+    /* background-image: url('{% static "customer/images/hero_banner.jpg" %}'); */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .cta-btn {
+    background-color: #2563eb;
+    padding: 15px 30px;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .cta-btn:hover {
+    background-color: #2547a7;
+  }
+  
+  .featured-products {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+  }
+  
+  .featured-products h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 50px;
+  }
+  
+  .product-box {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .product-box:hover {
+    transform: scale(1.05);
+  }
+  
+  .product-box img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  .view-product-btn {
+    background-color: #2563eb;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .view-product-btn:hover {
+    background-color: #2547a7;
+  }
+  
+  .categories {
+    background-color: #fafafa;
+    padding: 50px 0;
+  }
+  
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 50px;
+  }
+  
+  .category-box {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .category-box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .promotions {
+    padding: 50px 0;
+    background-color: #2563eb;
+    color: white;
+    text-align: center;
+  }
+  
+  .promo-box {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 8px;
+  }
+  
+  .promo-box h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .promo-box p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .promo-box .cta-btn {
+    background-color: #4caf50;
+  }
+  

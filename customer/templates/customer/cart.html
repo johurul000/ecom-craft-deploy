@@ -1,0 +1,75 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'customer/css/cart.css' %}">
+<title>Your Cart</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="main">
+    <h2>Your Shopping Cart</h2>
+
+    <div id="cart_items_container" class="cart_items">
+        {% for cart_item in cart_items %}
+        <div class="cart_item" id="cart_item_{{ cart_item.id }}">
+
+            <div class="cart_item_image">
+                <img src="{{ cart_item.product.product_image.url }}" alt="{{ cart_item.product.product_name }}">
+            </div>
+
+
+            <div class="item_details">
+                <h3>{{ cart_item.product.product_name }}</h3>
+                <div class="item_price">
+                    <h4>Price: ₹ {{ cart_item.product.price }}</h4>
+                </div>
+
+                <div class="item_btns">
+                    <button class="cart_item_delete_btn" data-cartitem-id="{{ cart_item.id }}">Remove</button>
+                    <div class="quantity_btns">
+                        <button id="decrease_btn_{{ cart_item.id }}">-</button>
+                        <input 
+                            class="quantity_field" 
+                            type="number" 
+                            id="quantity_field_{{ cart_item.id }}" 
+                            data-cartitem-price="{{ cart_item.product.price }}" 
+                            data-cartitem-id="{{ cart_item.id }}" 
+                            min="1" 
+                            value="{{ cart_item.quantity }}" 
+                            readonly
+                        >
+                        <button id="increase_btn_{{ cart_item.id }}">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="checkout {% if cart_items %}visible{% else %}hidden{% endif %}" id="checkout_section">
+        <div class="subtotal">
+            <h3>Subtotal:</h3>
+            <h4 id="cart_subtotal">₹ {{ cart_subtotal }}</h4>
+        </div>
+        <div class="checkout_btn">
+            <a href="{% url 'checkout' %}">
+                <button>Proceed to Checkout</button>
+            </a>
+        </div>
+    </div>
+
+    {% if not cart_items %}
+    <div id="empty_cart_message">
+        <p>Your cart is currently empty.</p>
+        <a href="{% url 'shop' %}" class="shop_now_link">Shop Now</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script defer src="{% static 'customer/js/cart.js'%}"></script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'customer/css/orderpage.css' %}">
+    <title>Orders</title>
+</head>
+<body>
+    {% include 'customer/components/navbar.html' %}
+    <div class="main">
+        <h1>Orders</h1>
+        <div class="order_list">
+            {% if order_details %}
+            
+                {% for order_info in order_details %}
+                    <div class="order">
+                        <div class="order_details">
+                            <div>
+                                <h3>Order Id: {{ order_info.order.order_id }}</h3>
+                                <h4>
+                                    {% if order_info.order.is_delivered %}
+                                        <span class="delivered">Delivered</span>
+                                    {% else %}
+                                        <span class="on-the-way">On the way</span>
+                                    {% endif %}
+                                </h4>
+                            
+                            </div>
+                            <div>
+                                <h4>Total Price: ₹ {{ order_info.order.order_total_price }}</h4>
+                                <h4>Total Quantity: {{ order_info.order.order_total_quantity }}</h4>
+                            </div>
+                        </div>
+                        <div class="product_list">
+                            {% for order_item in order_info.order_items %}
+                                <div class="product">
+                                    <div class="image">
+                                        <img src="{{ order_item.product.product_image.url }}" alt="">
+                                    </div>
+                                    <div class="product_details">
+                                        <div class="product_name">
+                                            <p>{{ order_item.product.product_name }}</p>
+                                        </div>
+                                        <div class="product_features">
+                                            <p>₹ {{ order_item.product.price }}</p>
+                                            <p>QTY: {{ order_item.quantity }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                {% endfor %}
+            {% else %}
+                    <p>No Orders.</p>
+            {% endif %}
+
+        </div>
+    </div>
+    
+</body>
+</html>

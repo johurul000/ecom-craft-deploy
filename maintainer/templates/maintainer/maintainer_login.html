@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintainer Login</title>
+    <link rel="stylesheet" href="{% static 'maintainer/css/maintainer_login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <h2 class="login-title">Maintainer Login</h2>
+            {% if message %}
+                <div class="alert">
+                    <p>{{ message }}</p>
+                </div>
+            {% endif %}
+            <form action="" method="post" class="login-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email" class="form-label">Enter Email:</label>
+                    <input type="email" name="email" id="email" value="{{ email }}" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Enter Password:</label>
+                    <input type="password" name="password" id="password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn-submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

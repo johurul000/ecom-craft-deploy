@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="csrf-token" content="{{ csrf_token }}">
+<link rel="stylesheet" href="{% static 'customer/css/base.css' %}">
+{% block css %}
+{% endblock %}
+</head>
+<body>
+    <nav>
+        <div class="nav_item">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'customer/images/online-shop.png' %}" alt="">
+                </a>
+
+            </div>
+            <div class="nav_links">
+                <a href="{% url 'shop' %}" class="shop_link">Shop</a> <!-- Shop Link -->
+                
+                {% if user.is_authenticated %}
+                <!-- Display username and image as a dropdown menu -->
+                <div class="user_account" onclick="toggleDropdown()">
+                    <img src="{% static 'customer/images/user.png' %}" alt="" class="user_image">
+                    <span class="username">{{ user.username }}</span>
+                    <div class="dropdown_menu">
+                        <a href="{% url 'your_account' %}" class="dropdown_item">My Account</a>
+                        <a href="{% url 'logout' %}" class="dropdown_item">Logout</a>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Show login/signup if user is not logged in -->
+                <a href="{% url 'login' %}" class="auth_link">Login</a> /
+                <a href="{% url 'signup' %}" class="auth_link">Sign Up</a>
+                {% endif %}
+                
+                <a href="{% url 'cart' %}">
+                    <button class="cart_btn" id="cart_btn">
+                        Cart ({{ item_count }})
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+{% block content %}
+{% endblock %}
+
+<input type="hidden" id="is_authenticated" value="{{ user_is_authenticated|yesno:'true,false' }}">
+
+{% block script %}
+{% endblock %}
+<script defer src="{% static 'customer/js/base.js'%}"></script>
+</body>
+</html>
+
+<!-- <img src="{% static 'customer/images/user.png' %}" alt=""> -->
+

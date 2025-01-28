@@ -1,0 +1,56 @@
+{% extends 'maintainer/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'maintainer/css/edit_order.css' %}">
+{% endblock %}
+
+{% block title %}
+Edit Order Item
+{% endblock %}
+
+{% block content %}
+<div class="edit-order-item-container">
+    <div class="edit-container02">
+        <h2>Edit Order Item</h2>
+        <div class="order-item-details">
+            <div class="order-item-image">
+                <img src="{{ order_item.product.product_image.url }}" alt="{{ order_item.product.product_name }}">
+            </div>
+            <div class="order-item-info">
+                <p><strong>Order Id:</strong> {{ order_item.order.order_id }}</p>
+                <p><strong>Product Name:</strong> {{ order_item.product.product_name }}</p>
+                <p><strong>Categories:</strong> {% for category in order_item.product.categories.all %}{{ category.name }} {% if not forloop.last %}, {% endif %}{% endfor %}</p>
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="labal_input_style">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="{{ order_item.quantity }}" required>
+            </div>
+            
+            <br>
+            <div class="labal_input_style">
+                <label for="is_shipped">Shipped:</label>
+                <input type="checkbox" id="is_shipped" name="is_shipped" {% if order_item.is_shipped %}checked{% endif %}>
+            </div>
+            
+            <br>
+            <div class="labal_input_style">
+                <label for="is_delivered">Delivered:</label>
+                <input type="checkbox" id="is_delivered" name="is_delivered" {% if order_item.is_delivered %}checked{% endif %}>
+            </div>
+            
+            <br>
+            <div class="labal_input_style">
+                <label for="is_cancelled">Cancelled:</label>
+                <input type="checkbox" id="is_cancelled" name="is_cancelled" {% if order_item.is_cancelled %}checked{% endif %}>
+            </div>
+            
+            <br>
+            <button type="submit" class="save-button">Save</button>
+        </form>
+    </div>
+    
+</div>
+{% endblock %}

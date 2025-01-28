@@ -1,0 +1,57 @@
+{% extends 'maintainer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'maintainer/css/edit_member.css' %}">
+{% endblock %}
+
+{% block title %}
+Edit Member
+{% endblock %}
+
+{% block content %}
+<div class="edit-member-container">
+    <h2>Edit Member</h2>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form method="post" action="{% url 'edit_member' member.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name" value="{{ member.full_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ member.email }}" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="{{ member.username }}" required>
+        </div>
+        <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input type="text" id="phone_number" name="phone_number" value="{{ member.phone_number }}">
+        </div>
+        <div class="form-group">
+            <label for="date_of_birth">Date of Birth</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" value="{{ member.date_of_birth|date:'Y-m-d' }}">
+        </div>
+        <div class="form-group">
+            <label for="is_maintainer">Is Maintainer?</label>
+            <input type="checkbox" id="is_maintainer" name="is_maintainer" {% if member.is_maintainer %}checked{% endif %}>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script defer src="{% static 'maintainer/js/edit_member.js'%}"></script>
+{% endblock %}

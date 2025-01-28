@@ -1,0 +1,43 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'customer/css/shop.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="main">
+        <h2>SHOP</h2>
+        <div class="product_section" id="product_section">
+            {% for product in products %}
+                <div class="product_box">
+                    <div>
+                        <img src="{{ product.product_image.url }}" alt="">
+                        <h3>{{ product.brand }}</h3>
+                        <a class="product-name" href="{% url 'product_details' product.id %}">{{ product.product_name }}</a>
+                        <h5>₹ {{ product.price }}</h5>
+                    </div>
+                    <div>
+                        <form id="add_to_cart_form" style="display: none;">
+                            {% csrf_token %}
+                        </form>
+                        <div>
+                            <button class="add_to_cart_btn" data-product-id="{{ product.id }}" data-product-price="{{ product.price }}">Add to Cart</button>
+                            <button>Buy Now</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+{% endblock %}
+
+{% block script %}
+
+
+<script defer src="{% static 'customer/js/shop.js'%}"></script>
+{% endblock %}

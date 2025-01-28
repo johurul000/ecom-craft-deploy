@@ -1,0 +1,36 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'customer/css/product.css' %}">
+<title>{{ product.product_name }}</title>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="product">
+        <div class="product_img">
+            <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}">
+        </div>
+        <div class="product_details">
+            <h3>{{ product.product_name }}</h3>
+            <h4>₹ {{ product.price }}</h4>
+            <div class="product_actions">
+                <button class="add_to_cart_btn" data-product-id="{{ product.id }}" data-product-price="{{ product.price }}">
+                    Add to Cart
+                </button>
+                <button class="buy_now_btn">Buy Now</button>
+            </div>
+
+            <div class="additional_details">
+                <h5>Additional Details:</h5>
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script defer src="{% static 'customer/js/product.js'%}"></script>
+{% endblock %}

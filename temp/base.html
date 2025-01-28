@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link rel="stylesheet" href="{% static 'customer/css/base.css' %}">
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+    <nav>
+        <div class="nav_item">
+            <div class="logo">
+                <img src="{% static 'customer/images/online-shop.png' %}" alt="">
+            </div>
+    
+            <div class="cart">
+                <a href="{% url 'cart' %}">
+                    <button class="cart_btn" id="cart_btn">
+                        Cart ({{ item_count }})
+                    </button>
+                </a>
+                
+            </div>
+        </div>
+
+        
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <input type="hidden" id="is_authenticated" value="{{ user_is_authenticated|yesno:'true,false' }}">
+    
+
+    {% block script %}
+
+    {% endblock %}
+
+    
+</body>
+</html>

@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'maintainer/css/base.css' %}">
+    {% block css %}
+
+    {% endblock %}
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <div class="grid-container">
+
+        <!-- HEADER start -->
+        <header class="main-header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined" style="cursor: pointer;">menu</span>
+            </div>
+            <div class="header-right">
+
+            </div>
+            <div class="header-right">
+              <div class="user_account" onclick="toggleDropdown()">
+                <img src="{% static 'customer/images/user.png' %}" alt="" class="user_image">
+                <span class="username">{{ user.username }}</span>
+                <div class="dropdown_menu">
+                    <a href="{% url 'member_list' %}" class="dropdown_item">Members</a>
+                    <a href="{% url 'maintainer_logout' %}" class="dropdown_item">Logout</a>
+                </div>
+            </div>
+                <!-- <span class="material-icons-outlined">account_circle</span> -->
+            </div>
+        </header>
+        <!-- HEADER  end -->
+
+        <!-- SIDEBAR Start -->
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">
+                        <img src="{% static 'customer/images/online-shop.png' %}" alt="">
+                    </span> 
+                    <span>
+                        STORE
+                    </span>
+                </div>
+                <span class="material-icons-outlined" style="cursor: pointer;" onclick="closeSidebar()">close</span>
+            </div>
+
+            <div class="sidebar-links">
+
+                <ul class="sidebar-list">
+                    <li id="dashboard" class="sidebar-list-item">
+                      <a href="{% url 'maintainer_dashboard' %}" >
+                        <span class="material-icons-outlined">dashboard</span> Dashboard
+                      </a>
+                    </li>
+                    <li id="orders" class="sidebar-list-item">
+                      <a href="{% url 'manage_orders' %}" >
+                        <span class="material-icons-outlined">shopping_cart</span> Orders
+                      </a>
+                    </li>
+                    <li id="products" class="sidebar-list-item">
+                        <a href="{% url 'product_list' %}" >
+                          <span class="material-icons-outlined">inventory_2</span> Products
+                        </a>
+                      </li>
+                    <li id="categories" class="sidebar-list-item">
+                      <a href="{% url 'categories_list' %}" >
+                        <span class="material-icons-outlined">category</span> Categories
+                      </a>
+                    </li>
+                    <li id="members" class="sidebar-list-item">
+                      <a href="{% url 'member_list' %}" >
+                        <span class="material-icons-outlined">groups</span> Members
+                      </a>
+                    </li>
+                    <!-- <li class="sidebar-list-item">
+                      <a href="#" target="_blank">
+                        <span class="material-icons-outlined">fact_check</span> Inventory
+                      </a>
+                    </li>
+                    <li class="sidebar-list-item">
+                      <a href="#" target="_blank">
+                        <span class="material-icons-outlined">poll</span> Reports
+                      </a>
+                    </li> -->
+                    <!-- <li class="sidebar-list-item">
+                      <a href="#" target="_blank">
+                        <span class="material-icons-outlined">settings</span> Settings
+                      </a>
+                    </li> -->
+                </ul>
+
+            </div>
+
+            
+
+
+        </aside>
+        <!-- SIDEBAR End -->
+
+        <!-- MAIN Start -->
+        <main class="main-container">
+            {% block content %}
+
+            {% endblock %}
+        </main>
+        <!-- MAIN End -->
+
+
+
+    </div>
+
+    <script defer src="{% static 'maintainer/js/base.js'%}"></script>
+    {% block scripts %}
+
+    {% endblock %}
+</body>
+</html>

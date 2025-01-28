@@ -1,0 +1,244 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'customer/css/customer_info.css' %}">
+<title>Customer Info</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="main">
+    <h2>Login and Security</h2>
+    <div class="user_details">
+        <!-- Name Section -->
+        <div class="section">
+            <label for="">Name</label>
+            {% if user.full_name %}
+                <div class="section_functions">
+                    <div>
+                        <p>{{ user.full_name }}</p>
+                    </div>
+                    <div>
+                        <button
+                            id="edit_name"
+                            data-name="{{ user.full_name }}"
+                        >
+                            Edit
+                        </button>
+                    </div>
+                </div>
+                
+            {% else %}
+                <div class="section_functions">
+                    <div>
+                        <button id="add_name">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Email Section -->
+        <div class="section">
+            <label for="">Email</label>
+            {% if user.email %}
+                <div class="section_functions">
+                    <div>
+                        <p>{{ user.email }}</p>
+                    </div>
+                    <div>
+                        <button
+                            id="edit_email"
+                            data-email="{{ user.email }}"
+                        >
+                            Edit
+                        </button>
+                    </div>
+                </div>
+                
+            {% endif %}
+        </div>
+
+        <!-- Phone Number -->
+        <div class="section">
+            <label for="">Phone Number</label>
+            {% if user.phone_number %}
+                <div class="section_functions">
+                    <div>
+                        <p>{{ user.phone_number }}</p>
+                    </div>
+                    <div>
+                        <button
+                            id="edit_phone"
+                            data-phone="{{ user.phone_number }}"
+                        >
+                            Edit
+                        </button>
+                    </div>
+                </div>
+                
+            {% else %}
+                <div class="section_functions">
+                    <div>
+                        <button
+                            id="add_phone"
+                        >
+                            Add
+                        </button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Password Section -->
+        <div class="section">
+            <label for="">Password</label>
+            
+            <div class="section_functions">
+                <div>
+                    <p>********</p>
+                </div>
+                <div>
+                    <button
+                        id="change_password"
+                    >
+                        Change
+                    </button>
+                </div>
+            </div>
+                
+    
+        </div>
+        
+    </div>
+</div>
+
+<!-- POPUP MODELS -->
+
+    <!-- Add Name Form -->
+    <div id="addNameModel" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+            <h3>Add Name</h3>
+
+
+            <form id="addNameForm" method="post" class="modal-form">
+                {% csrf_token %}
+                <input type="text" name="full_name" >
+                <button type="submit">Save Name</button>
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Edit Name Form -->
+    <div id="editNameModel" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+            <h3>Edit Name</h3>
+            
+
+            <form id="editNameForm" method="post" class="modal-form">
+                {% csrf_token %}
+                <input type="text" name="full_name" >
+                <button type="submit">Save Name</button>
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Edit Email Form -->
+    <div id="editEmailModel" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+            <h3>Edit Email</h3>
+
+
+            <form id="editEmailForm" method="post" class="modal-form">
+                {% csrf_token %}
+                <input type="email" name="email" >
+                <button type="submit">Save Email</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Add PhoneNumber Form -->
+    <div id="addPhoneModel" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+            <h3>Add Phone Number</h3>
+
+            <form id="addPhoneForm" method="post" class="modal-form">
+                {% csrf_token %}
+                <input type="text" name="phone_number" >
+                <button type="submit">Save Phone Number</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Edit PhoneNumber Form -->
+    <div id="editPhoneModel" class="modal">
+        
+
+        <div class="modal-content">
+            
+
+            <span class="close">&times;</span>
+
+            <h3>Edit Phone Number</h3>
+
+            <form id="editPhoneForm" method="post" class="modal-form">
+                {% csrf_token %}
+                <input type="text" name="phone_number" >
+                <button type="submit">Save Phone Number</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!--Change Password Form -->
+    <div id="changePasswordModel" class="modal">
+        
+
+        <div class="modal-content">
+            
+
+            <span class="close">&times;</span>
+
+            <h3>Edit Password</h3>
+
+            <form id="changePasswordForm" method="post" class="modal-form">
+                {% csrf_token %}
+                <input type="password" name="old_password"  placeholder="Enter Current Password">
+                <input type="password" name="new_password"  placeholder="Enter New Password">
+                <input type="password" name="confirm_password"  placeholder="Confirm New Password">
+                <button type="submit">Update Password</button>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script defer src="{% static 'customer/js/customer_info.js'%}"></script>
+{% endblock %}
+
+
+

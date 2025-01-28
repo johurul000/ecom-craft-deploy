@@ -1,0 +1,20 @@
+{% load static %}
+
+
+<nav>
+    <div class="nav_item">
+        <div class="logo">
+            <img src="{% static 'customer/images/online-shop.png' %}" alt="">
+        </div>
+
+        <div class="cart">
+            <a href="{% url 'cart' %}">
+                <button class="cart_btn" id="cart_btn">
+                    Cart ({{ item_count }})
+                </button>
+            </a>
+            
+        </div>
+    </div>
+    
+</nav>

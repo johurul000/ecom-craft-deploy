@@ -1,0 +1,141 @@
+{% extends 'maintainer/base.html' %}
+{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'maintainer/css/orders.css' %}">  
+
+{% endblock %}
+
+{% block title %}
+    Manage Orders
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Orders</h1>
+</div>
+
+<div class="tab">
+    <button class="tablinks active" onclick="openTab(event, 'pending')">Pending Orders</button>
+    <button class="tablinks" onclick="openTab(event, 'shipped')">Shipped Orders</button>
+</div>
+
+<div id="pending" class="tabcontent active">
+    <div class="order_list">
+        {% if pending_order_items %}
+            <div class="product_list">
+                {% for order_item in pending_order_items %}
+                    <div class="product">
+                        
+                        <div class="order_id">
+                            <p>Order Id: {{ order_item.order.order_id }}</p>
+                        </div>
+                        
+                        <div class="item_details">
+                            <div class="image">
+                                <img src="{{ order_item.product.product_image.url }}" alt="">
+                            </div>
+                            <div class="product_details">
+                                
+                                <div class="product_name">
+                                    <p>{{ order_item.product.product_name }}</p>
+                                </div>
+                                <div class="product_price">
+                                    <p>₹ {{ order_item.product.price }}</p>
+                                </div>
+                                <div class="product_quantity">
+                                    <p>Quantity: {{ order_item.quantity }}</p>
+                                </div>
+                                
+                            </div>
+                            <div class="product_management">
+                                <button class="details-button" data-order-item-id="{{ order_item.id }}">Details</button>
+                                <button class="edit-order-button" data-order-item-id="{{ order_item.id }}">
+                                    Edit
+                                </button>
+                                <button id="ship_button" class="ship-order-button" data-order-item-id="{{ order_item.id }}">
+                                    Ship
+                                </button>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No Order Items.</p>
+        {% endif %}
+    
+    </div>
+</div>
+
+<div id="shipped" class="tabcontent">
+    <div class="order_list">
+        {% if shipped_order_items %}
+            <div class="product_list">
+                {% for order_item in shipped_order_items %}
+                    <div class="product">
+                        
+                        <div class="order_id">
+                            <p>Order Id: {{ order_item.order.order_id }}</p>
+                        </div>
+                        
+                        <div class="item_details">
+                            <div class="image">
+                                <img src="{{ order_item.product.product_image.url }}" alt="">
+                            </div>
+                            <div class="product_details">
+                                
+                                <div class="product_name">
+                                    <p>{{ order_item.product.product_name }}</p>
+                                </div>
+                                <div class="product_price">
+                                    <p>₹ {{ order_item.product.price }}</p>
+                                </div>
+                                <div class="product_quantity">
+                                    <p>Quantity: {{ order_item.quantity }}</p>
+                                </div>
+                                
+                            </div>
+                            <div class="product_management">
+                                <button class="details-button" data-order-item-id="{{ order_item.id }}">Details</button>
+                                <button class="edit-order-button" data-order-item-id="{{ order_item.id }}">
+                                    Edit
+                                </button>
+                                <button id="shipped_button" disabled>
+                                    Shipped
+                                </button>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No Order Items.</p>
+        {% endif %}
+    
+    </div>
+</div>
+
+
+<div id="order-item-details-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-content-div01">
+            <div id="order-item-details-content"></div>
+        </div>
+        
+    </div>
+</div>
+
+    
+
+{% endblock %}
+
+{% block scripts %}
+<script defer src="{% static 'maintainer/js/orders.js'%}"></script>
+{% endblock %}

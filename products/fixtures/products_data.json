@@ -1,0 +1,272 @@
+[
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "product_name": "Men's Cotton Solid V-Neck Regular Fit T-Shirt (Available in Plus Size)",
+    "description": "Material - 100% Cotton\r\nFit Type - Regular fit; Half sleeve T-Shirt\r\nV-Neck T-Shirt for Men\r\nMachine wash cold with similar colors, gentle cycle, only non-chlorine bleach (when needed), tumble dry low, warm iron if needed\r\nFeatures a Ribbed neck, Straight Hem, Short sleeves, and a Label-free Neck for everyday comfort. Pair it with denims or layer it under a Shirt/Jacket for all casual occassions",
+    "price": "299.00",
+    "category": 1,
+    "brand": "Symbol",
+    "stock_quantity": 10,
+    "sku": "PROD-W7SQI3",
+    "availability": true,
+    "shipping_weight": "1.00",
+    "shipping_dimensions": "Lx",
+    "discounts": "0.00",
+    "product_image": "product_images/product_img_OFL8Tyn.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "product_name": "Men's Regular Fit Polo",
+    "description": "Occasion : Casual\r\nFit : Regular Fit\r\nMaterial : 60% Cotton and 40% Polyester\r\nNeck : Polo Neck; Pattern : Solid\r\nCollar Style: Band Collar; Sleeve Type: Half Sleeve; Material Composition: 60% Cotton, 40% Polyester; Closure Type: Button\r\nBrand: Allen Solly",
+    "price": "699.00",
+    "category": 1,
+    "brand": "Allen Solly",
+    "stock_quantity": 10,
+    "sku": "PROD-KUYT5E",
+    "availability": true,
+    "shipping_weight": "0.80",
+    "shipping_dimensions": "xyz",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image02_P93ZrWn.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "product_name": "Men's Regular Fit Polo Neck Half Sleeve Solid Casual T-Shirt | Polo T-Shirt for Men",
+    "description": "Lux Cozi Men's Regular Fit Polo Neck Half Sleeve Solid Casual T-shirt is a stylish and comfortable choice for casual wear.\r\nThe half sleeves offer a relaxed and versatile style, perfect for warmer weather or layering under jackets.\r\nThe solid color design adds a touch of elegance and makes it easy to pair with different bottoms.\r\nIt is suitable for various occasions, including casual outings, social gatherings, and relaxed work environments.\r\nThe T-shirt is designed with a classic polo neck, giving it a sophisticated and timeless look.",
+    "price": "319.00",
+    "category": 1,
+    "brand": "Lux Cozi",
+    "stock_quantity": 10,
+    "sku": "PROD-YSL0JT",
+    "availability": true,
+    "shipping_weight": "0.48",
+    "shipping_dimensions": "xxx",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image03.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "product_name": "Solid Self Design Oversized Tshirt for Men | Oversize T-Shirts for Men | Men Drop Shoulder Tshirts | Bagy Fit Men Tshirt",
+    "description": "Fabric: 100% Polyester with self design\r\nPattern: Oversized Tshirt for men\r\nOccasion: Casual and Party\r\nMen Tshirt || Tshirts for men || Oversize Tshirts",
+    "price": "379.00",
+    "category": 1,
+    "brand": "The Modern Soul",
+    "stock_quantity": 10,
+    "sku": "PROD-ETU7MS",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xxyy",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image04.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "product_name": "T-Shirt for Mens Double Stripes on Chest",
+    "description": "Fit Type: Regular Fit\r\nWash Care: Machine Wash/ Hand Wash\r\nFabric Type: 60% Cotton And 40% Polyester\r\nPattern name: Solid; Sleeve Type: Half Sleeve\r\nNeck Style : Round Neck",
+    "price": "215.00",
+    "category": 1,
+    "brand": "AUSK",
+    "stock_quantity": 10,
+    "sku": "PROD-VQXD5H",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xxyy",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image05.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "product_name": "Men's Regular Fit Polo Shirt",
+    "description": "Occasion : Leisure Sport\r\nPattern : Solid\r\nFit :Regular Fit\r\nMaterial: 60%Cotton40%Polyester\r\nSleeves : Half Sleeves",
+    "price": "699.00",
+    "category": 1,
+    "brand": "Van Heusen",
+    "stock_quantity": 10,
+    "sku": "PROD-H2V4K1",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xxyy",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image06.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "product_name": "Luxury PV Lycra Stretchable Formal Pants for Men",
+    "description": "Care Instructions: Machine Wash\r\nStretchable Waist: Pant waist is the same as actual waist when measured with a measuring tape. In doubt, order a size smaller as our REVOLUTIONARY FLEXTECH WAISTBAND stretches up to 2 INCHES extra while fitting perfectly\r\nPANT LENGTH: 41 inches. Pant can be altered to reduce length, or, increase length by up to 2 inches due to margin in the fabric. Ensures optimal ankle length full pant\r\nSTRETCH FABRIC: Premium export quality clothing. Machine and hand washable. 95% poly viscose, 5% lycra elastane. Can be worn with a suit or coat\r\nSLIM FIT: Snug fit from waist to ankle for the comfortable and formal man",
+    "price": "1899.00",
+    "category": 1,
+    "brand": "The Pant Project",
+    "stock_quantity": 10,
+    "sku": "PROD-84MDYT",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xxyy",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image07.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "product_name": "Men's Slim Dress Pants",
+    "description": "If you are in between sizes, go for a size higher\r\nCare Instructions: Machine Wash\r\nFit Type: Slim\r\nStretch Poly Viscose belnd for all day comfort\r\nSlant pocket with back welt pocket. Number of Pockets: 4\r\nButton closure with zip fly",
+    "price": "899.00",
+    "category": 1,
+    "brand": "Symbol",
+    "stock_quantity": 10,
+    "sku": "PROD-VHYYZP",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xx",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image08.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "product_name": "Stretchable Formal Pants for Plus Size Men",
+    "description": "STRETCHABLE WAIST: Pant waist is the same as actual waist when measured with a measuring tape. In doubt, order a size smaller as our REVOLUTIONARY FLEXTECH WAISTBAND stretches up to 2 INCHES extra while fitting perfectly\r\nPANT LENGTH: 41 inches. Pant can be altered to reduce length, or, increase length by up to 2 inches due to margin in the fabric. Ensures optimal ankle length full pant.\r\nSTRETCH FABRIC: Premium export quality clothing. Machine and hand washable. 96% poly viscose, 4% lycra elastane. Can be worn with a suit or coat.",
+    "price": "2049.00",
+    "category": 1,
+    "brand": "The Pant Project",
+    "stock_quantity": 10,
+    "sku": "PROD-U4F70J",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xx",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image09.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "product_name": "Women's Casual Printed Round Neck Full Sleeve Oversized Longline Drop Shoulder T Shirt",
+    "description": "Materiel Type: Fleece, Sleeve type: Full Sleeve\r\nAvailable Color: Purple, Black\r\nAvailable Size: S to XL\r\nPackage Contains: Pack of 1 T-shirt\r\nOccasion: Casual wear, Daily Wear, Party Wear, Casual Office T-shirt, Gifts, Get-together and Company Meet",
+    "price": "448.00",
+    "category": 1,
+    "brand": "Dial4style",
+    "stock_quantity": 10,
+    "sku": "PROD-GD8WHZ",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xx",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image10.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "product_name": "Women Cotton Full Sleeve Tshirt/top with Chest Print (Combo of 2) | Durable",
+    "description": "Star Touch Women Cotton Full Sleeve tshirt/top for Women that can be styled with a legging, Shorts, Jeans, Pajamas, or 3/4 jeans.\r\nGarment Features : Trendy Colors ; Softness increases even after washes ; Bio Washed ; Relaxed Tailored Fit\r\nFabric: Made with a bio-washed cotton fabric\r\nGarment Care : Do not Iron On Prints; Wash Inside Out; Dry reverse In shade; Do not Bleach & Tumble",
+    "price": "809.00",
+    "category": 1,
+    "brand": "Star Touch",
+    "stock_quantity": 10,
+    "sku": "PROD-QISW8Y",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xx",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image11.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "product_name": "Womens Polo Collar Neck T-Shirt Top (Design: Solid)",
+    "description": "Size Chart: Please refer size chart available in the product image. Sizes available is S-36, M-38, L-40, XL-82\r\nMaterial - 80% Cotton and 20% Polyester",
+    "price": "375.00",
+    "category": 1,
+    "brand": "Wear Your Opinion",
+    "stock_quantity": 10,
+    "sku": "PROD-87E6BB",
+    "availability": true,
+    "shipping_weight": "0.40",
+    "shipping_dimensions": "xx",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image12.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "product_name": "Women's Slim Fit Stretchable Cotton Trousers",
+    "description": "Sizes: (Fit to waist size) M- 28 Inches | L- 30 Inches | XL- 32 Inches | XXL- 34 Inches\r\nFabric: 97% Cotton, 3% Lycra | Anti Pilling | Super Soft.\r\nPattern: Solid, Number of pockets: 2, Style: Pants/ Trousers\r\nRise: Mid Rise, Closure: Half elasticated waist band, Length: 38 Inches\r\nPair perfectly with all your outfits for Casual and Formal.",
+    "price": "499.00",
+    "category": 1,
+    "brand": "Saundarya",
+    "stock_quantity": 10,
+    "sku": "PROD-4TPSG5",
+    "availability": true,
+    "shipping_weight": "0.50",
+    "shipping_dimensions": "xx",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image13.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "product_name": "Everyday Cotton Pants | Women Cotton Trouser Pant Regular Fit for Office",
+    "description": "Size Guide : S [27\"-28\"], M [29\"-30\"], L [31\"-33\"], XL [34\"-36\"], XXL [37\"-39\"], XXXL [40\"-42\"], 4XL [43\"-46\"]",
+    "price": "699.00",
+    "category": 1,
+    "brand": "Generic",
+    "stock_quantity": 9,
+    "sku": "PROD-ZHC8ZZ",
+    "availability": true,
+    "shipping_weight": "0.30",
+    "shipping_dimensions": "xwa",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image14.jpg"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "product_name": "Women Polyester Blend Solid Trousers",
+    "description": "Type:Women Pant\r\nFabric:Polyester blend\r\nFabric care:Machine wash\r\nLength:Regular Length\r\nClosure:Button",
+    "price": "499.00",
+    "category": 1,
+    "brand": "KOTTY",
+    "stock_quantity": 10,
+    "sku": "PROD-SQIHCC",
+    "availability": true,
+    "shipping_weight": "0.30",
+    "shipping_dimensions": "xww",
+    "discounts": "0.00",
+    "product_image": "product_images/poduct_image15.jpg"
+  }
+}
+]

@@ -1,0 +1,102 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'customer/css/addresses.css' %}">
+<title>Addresses</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="main">
+    <div class="address_selection">
+        <h3 id="address_heading">Delivery Addresses</h3>
+        <div id="selected_address" class="selected_address">
+            <h4>Default Address: </h4>
+            <div id="selected_address_paragraph">
+                {% if default_address %}
+                    <input type="checkbox" checked disabled>
+                    <p>
+                        <span>{{ default_address.name }}</span>, {{ default_address.phone_number }},
+                        {{ default_address.street }}, {{ default_address.city }}, 
+                        {{ default_address.state }}, {{ default_address.postcode }}, 
+                        {{ default_address.country }}
+                    </p>
+                {% else %}
+                    No Default Shipping Address Found. Please Add One Below:
+                {% endif %}
+            </div>
+        </div>
+
+        <div id="address_section" class="address_section">
+            <h4>Your Addresses</h4>
+            <div id="address_list" class="address_list">
+                {% if addresses %}
+                    {% for address in addresses %}
+                        <div class="address" data-id="{{ address.id }}"
+                            data-name="{{ address.name }}" data-phone="{{ address.phone_number }}"
+                            data-street="{{ address.street }}" data-city="{{ address.city }}"
+                            data-state="{{ address.state }}" data-postcode="{{ address.postcode }}"
+                            data-country="{{ address.country }}" data-isdefault="{{ address.is_default|stringformat:'s' }}">
+                            
+                            <div class="address_details">
+                                <input type="checkbox" name="address_checkbox" value="{{ address.id }}" {% if address.is_default %}checked{% endif %}>
+                                <p>
+                                    <span>{{ address.name }}</span>, {{ address.phone_number }},
+                                    {{ address.street }}, {{ address.city }}, 
+                                    {{ address.state }}, {{ address.postcode }}, 
+                                    {{ address.country }} 
+                                </p>
+                            </div>
+                            <div class="address_crud_btns">
+                                <button class="edit_address_button">Edit</button>
+                                <button class="delete_address_button">Delete</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p id="no_address_message">No Available Address</p>
+                {% endif %}
+            </div>
+            <button id="addAddressBtn" class="addAddressBtn">Add New Address</button> 
+            <div class="use_this_add_btn">
+                <button id="use_this_address">Set Default Address</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Address Modal -->
+<div id="addAddressModel" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="addAddressForm" method="post" class="modal-form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Save Address</button>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Address Modal -->
+<div id="editAddressModel" class="modal">
+    <div class="modal-content">
+        <span class="close" id="edit_close">&times;</span>
+        <form id="editAddressForm" method="post" class="modal-form">
+            {% csrf_token %}
+            {{ edit_form }}
+            <button type="submit">Update Address</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script defer src="{% static 'customer/js/addresses.js'%}"></script>
+{% endblock %}
+
+
+

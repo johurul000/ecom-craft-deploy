@@ -1,0 +1,53 @@
+{% extends 'maintainer/base.html' %}
+{% load static %}
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'maintainer/css/maintainer_dashboard.css' %}">  
+
+{% endblock %}
+
+{% block title %}
+    Mainatiner Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="main-title">
+        <h2>DASHBOARD</h2>
+    </div>
+
+    <div class="main-cards">
+
+        <div class="card">
+        <div class="card-inner">
+            <h3>PRODUCTS</h3>
+            <span class="material-icons-outlined">inventory_2</span>
+        </div>
+        <h1>{{ product_count }}</h1>
+        </div>
+
+        <div class="card">
+        <div class="card-inner">
+            <h3>CATEGORIES</h3>
+            <span class="material-icons-outlined">category</span>
+        </div>
+        <h1>{{ catagory_count }}</h1>
+        </div>
+
+        <div class="card">
+        <div class="card-inner">
+            <h3>CUSTOMERS</h3>
+            <span class="material-icons-outlined">groups</span>
+        </div>
+        <h1>{{ customer_count }}</h1>
+        </div>
+
+        <div class="card">
+        <div class="card-inner">
+            <h3>PENDING ORDERS</h3>
+            <span class="material-icons-outlined">shopping_cart</span>
+        </div>
+        <h1>{{ pending_order_count }}</h1>
+        </div>
+
+    </div>
+{% endblock %}

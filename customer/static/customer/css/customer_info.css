@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    background-color: #111111; /* Dark background */
+    color: #f5f5f5; /* Light text */
+}
+
+.main {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #222222; /* Slightly lighter background for main section */
+}
+
+.user_details {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #444444; /* Darker border to blend better */
+    border-radius: 8px;
+    margin-top: 10px;
+    background-color: #333333; /* Dark background for details section */
+}
+
+.user_details button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user_details button:hover {
+    background-color: #1d4ed8; /* Darker blue for hover */
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 8px;
+    border-bottom: 1px solid #444444;
+}
+
+.section label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #e5e5e5; /* Slightly lighter color for label */
+}
+
+.section_functions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section_functions button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.section_functions button:hover {
+    background-color: #1d4ed8; /* Darker green for hover */
+}
+
+.section_functions p {
+    font-size: 1rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Darker overlay */
+}
+
+.modal-content {
+    background-color: #333333; /* Dark background for modals */
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #555555;
+    width: 40%;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #f5f5f5; /* Lighter color for close button */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-form {
+    display: flex;
+    flex-flow: column;
+    gap: 12px;
+}
+
+.modal-form input {
+    padding: 10px;
+    background-color: #222222; /* Dark input background */
+    color: white;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.modal-form input:focus {
+    background-color: #333333; /* Slightly lighter input focus color */
+    outline: none;
+}
+
+.modal-form button {
+    width: 60%;
+    padding: 10px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-form button:hover {
+    background-color: #1d4ed8; /* Darker blue for button hover */
+}

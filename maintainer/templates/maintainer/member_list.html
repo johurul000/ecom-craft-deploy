@@ -1,0 +1,101 @@
+{% extends 'maintainer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'maintainer/css/member_list.css' %}">
+{% endblock %}
+
+{% block title %}
+Member List
+{% endblock %}
+
+{% block content %}
+
+<div class="member-list-container">
+
+    <h2>Member List</h2>
+
+    <div class="add-member-button">
+        <a href="{% url 'add_member' %}" class="btn btn-primary">&plus; Add New Member</a>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab('customers')">Customers</button>
+        <button class="tab-button" onclick="showTab('maintainers')">Maintainers</button>
+    </div>
+
+    <div id="customers" class="tab-content active">
+        {% if customers %}
+        <table class="member-table">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in customers %}
+                <tr>
+                    <td title="{{ member.full_name }}">{{ member.full_name }}</td>
+                    <td>{{ member.username }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.phone_number }}</td>
+                    <td>{{ member.date_of_birth }}</td>
+                    <td class="member-actions">
+                        <a href="{% url 'edit_member' member.id %}" class="btn btn-secondary">Edit</a>
+                        <button class="btn btn-danger delete-button" data-member-id="{{ member.id }}">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No customers found.</p>
+        {% endif %}
+    </div>
+
+    <div id="maintainers" class="tab-content">
+        {% if maintainers %}
+        <table class="member-table">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in maintainers %}
+                <tr>
+                    <td title="{{ member.full_name }}">{{ member.full_name }}</td>
+                    <td>{{ member.username }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.phone_number }}</td>
+                    <td>{{ member.date_of_birth }}</td>
+                    <td class="member-actions">
+                        <a href="#" class="btn btn-secondary">Edit</a>
+                        <button class="btn btn-danger delete-button" data-member-id="{{ member.id }}">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No maintainers found.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script defer src="{% static 'maintainer/js/member_list.js'%}"></script>
+{% endblock %}

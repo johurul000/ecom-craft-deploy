@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'customer/css/order_success.css' %}">
+    <title>Order success</title>
+</head>
+<body>
+    <div class="order-success-container">
+        <!-- Checkmark icon -->
+        <div class="check-image">
+          <img src="{% static 'customer/images/check.png' %}" alt="Success Check">
+        </div>
+        
+        <!-- Success message -->
+        <h2>Order Successful!</h2>
+        
+        <!-- Order details -->
+        <ul class="order-details">
+          <li><strong>Order Id:</strong> {{ order.order_id }}</li>
+          <li><strong>Total Price:</strong> ₹{{ order.order_total_price }}</li>
+          <li><strong>Total Quantity:</strong> {{ order.order_total_quantity }}</li>
+        </ul>
+      
+        <!-- Back to Shop Button -->
+        <a href="{% url 'shop' %}">
+          <button class="back-to-shop-btn">Back to Shop</button>
+        </a>
+      </div>
+</body>
+</html>
+
+<!-- <img src="{% static 'customer/images/check.png' %}" alt=""> -->

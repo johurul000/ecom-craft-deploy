@@ -1,0 +1,83 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'customer/css/profile.css' %}">
+<title>Your Account</title>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="main">
+    <h3>Your Account</h3>
+    <div class="card_section">
+
+        
+        <div id="order_div" class="card">
+            <div class="img_div">
+                <img src="{% static 'customer/images/received.png' %}" alt="">
+            </div>
+            <div class="card_details">
+                <h4>Your Orders</h4>
+                <p>Track or check orders</p>
+            </div>
+
+        </div>
+        
+        <div id="security_div" class="card">
+            <div class="img_div">
+                <img src="{% static 'customer/images/lock.png' %}" alt="">
+            </div>
+            <div class="card_details">
+                <h4>Login & security</h4>
+                <p>Edit login, name, and mobile number</p>
+            </div>
+
+        </div>
+
+        
+        <div id="address_div" class="card">
+            <div class="img_div">
+                <img src="{% static 'customer/images/home-address.png' %}" alt="">
+            </div>
+            <div class="card_details">
+                <h4>Your Addresses</h4>
+                <p>Edit addresses for orders</p>
+            </div>
+        </div>
+        
+
+        
+
+
+    </div>
+</div>
+
+
+<!--Check Password Form -->
+<div id="checkPasswordModel" class="modal">
+    
+
+    <div class="modal-content">
+        
+
+        <span class="close">&times;</span>
+
+        <h3>Enter Your Password</h3>
+
+        <form id="checkPasswordForm" method="post" class="modal-form">
+            {% csrf_token %}
+            <input type="password" name="password"  placeholder="Enter your Password">
+            <button type="submit">Authenticate</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+
+
+{% block script %}
+<script defer src="{% static 'customer/js/profile.js'%}"></script>
+{% endblock %}

@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    color: white;
+
+}
+
+
+.main {
+    width: 800px;
+    display: flex;
+    margin-top: 40px;
+    flex-flow: column;
+    justify-content: center;
+}
+.main h2 {
+    text-align: center;
+}
+.product_section {
+    /* width: 100%; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    
+}
+.product_section img {
+    height: 200px;
+    width: 150px;
+}
+.product_box {
+    border: 1px solid black;
+    background-color: rgba(51, 51, 51, 0.842);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem; /* Reduced padding for a cleaner look */
+    box-shadow: 0 1px 2px 0 rgba(216, 216, 216, 0.2), 0 1px 10px 0 rgba(216, 216, 216, 0.19);
+    gap: 1rem; /* Adds consistent spacing between child elements */
+    text-align: center; /* Centers all child elements inside the product card */
+    transition: background-color 0.3s ease-in-out; /* Smooth hover effect */
+  }
+  
+  .product_box img {
+    height: 150px;
+    width: auto;
+    object-fit: contain; /* Ensures the image doesn't stretch */
+    margin-bottom: 1rem; /* Adds space below the image */
+  }
+  
+  .product_box h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #f5f5f5; /* Matches the dark theme */
+  }
+  
+  .product-name {
+    font-size: 1rem;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-name:hover {
+    color: rgb(224, 224, 224); /* Slightly lighter hover effect */
+  }
+  
+  .product_box h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #a0a0a0; /* Muted text for price */
+    margin-bottom: 1rem; /* Adds space below the price */
+  }
+  
+  .product_box button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .add_to_cart_btn {
+    background-color: #2563eb; /* Primary color for "Add to Cart" */
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .add_to_cart_btn:hover {
+    background-color: #2547a7; /* Darker blue on hover */
+  }
+  
+  .product_box button:last-child {
+    background-color: #4caf50; /* Green for "Buy Now" */
+    color: white;
+  }
+  
+  .product_box button:last-child:hover {
+    background-color: #388e3c; /* Darker green on hover */
+  }
+  

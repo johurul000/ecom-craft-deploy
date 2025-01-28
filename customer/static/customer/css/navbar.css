@@ -1,0 +1,43 @@
+nav {
+    background-color: #111111;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    /* border-bottom: 1px solid white; */
+    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.2), 0 2px 4px -1px rgba(255, 255, 255, 0.1); /* White shadow */
+}
+
+.nav_item {
+    width: 100%;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.cart_btn {
+    padding: 5px 10px; /* Adjusted for consistent padding */
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #2563eb; /* Bluish button color */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.cart_btn:hover {
+    background-color: #2547a7; /* Darker blue on hover */
+}

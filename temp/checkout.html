@@ -1,0 +1,229 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'customer/css/checkout.css' %}">
+<title>Checkout</title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="main"> 
+    <div class="address_selection">
+        <h3 id="address_heading">Select Delivery Address</h3>
+        <div id="selected_address" class="selected_address">
+            <div id="selected_address_paragraph">
+                {% if default_address %}
+                    <input type="checkbox" name="" id="" checked disabled>
+                    <p>
+                        <span>{{ default_address.name }}</span>, {{ default_address.phone_number }}, {{ default_address.street }}, {{ default_address.city }}, {{ default_address.state }}, {{ default_address.postcode }}, {{ default_address.country }}
+                    </p>
+
+                {% else %}
+                    No Default Shipping Address Found. Please Add One Below:
+                {% endif %}
+                
+            </div>
+            {% if default_address %}
+                <button id="change_address">Change</button>
+            {% else %}
+                <button id="change_address">Add Address</button>
+            {% endif %}
+            
+        </div>
+        <div id="address_section" class="address_section">
+            <h4>Your Addresses</h4>
+            <div id="address_list" class="address_list">
+
+                {% if addresses %}
+                    {% for address in addresses %}
+                        <div 
+                            class="address"
+                            data-id="{{ address.id }}"
+                            data-name="{{ address.name }}"
+                            data-phone="{{ address.phone_number }}"
+                            data-nousenumber="{{ address.house_number }}"
+                            data-street="{{ address.street }}"
+                            data-city="{{ address.city }}"
+                            data-state="{{ address.state }}"
+                            data-postcode="{{ address.postcode }}"
+                            data-country="{{ address.country }}"
+                            data-isdefault="{{ address.is_default|stringformat:'s' }}"
+
+                        >
+                            <div class="address_details">
+                                <input type="checkbox" name="address_checkbox" value="{{ address.id }}" {% if address.is_default %}checked{% endif %}>
+                                <p>
+                                    <span>{{ address.name }}</span>, {{ address.phone_number }}, {{ address.street }}, {{ address.city }}, {{ address.state }}, {{ address.postcode }}, {{ address.country }} 
+                                </p>
+                            </div>
+                            <div class="address_crud_btns">
+                                <button class="edit_address_button">Edit</button>
+                                <button class="delete_address_button">Delete</button>
+                            </div>
+                            
+                        </div>
+                    {% endfor %}
+                {% else %}
+                        <p id="no_address_message">No Available Address</p>
+                {% endif %}
+
+            </div>
+            <button id="addAddressBtn" class="addAddressBtn">Add New Address</button>    
+            <div class="use_this_add_btn">
+                <button id="use_this_address">Use this Address</button>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+    <div class="payment_method">
+        <h3>Payment Method</h3>
+        <div>
+            <input type="checkbox" name="" id="" checked disabled>
+            <label for="">Online Payment(RazorPay)</label>
+
+        </div>
+
+    </div>
+
+    <div class="review_section">
+        <h3>Review Items and order</h3>
+        <div class="review_orders">
+            <div class="cart_items">
+                {% for cart_item in cart_items %}
+                    <div class="cart_item" id="cart_item_{{ cart_item.id }}">
+                        <div>
+                            <img src="{{ cart_item.product.product_image.url }}" alt="">
+                        </div>
+                        <div class="item_details">
+                            <h3>{{ cart_item.product.product_name }}</h3>
+                            <div class="item_price">
+                                <h4>Price: ₹ {{ cart_item.product.price }}</h4>
+                            </div>
+    
+                            <div class="item_btns">
+                                <button class="cart_item_delete_btn" data-cartitem-id="{{ cart_item.id }}">Delete</button>
+                                <div class="quantity_btns">
+                                    <button id="decrease_btn_{{ cart_item.id }}">-</button>
+                                    <input 
+                                        class="quantity_field" 
+                                        type="number" 
+                                        name="" 
+                                        id="quantity_field_{{cart_item.id }}" 
+                                        data-cartitem-id="{{ cart_item.id }}" 
+                                        min="1" 
+                                        value="{{ cart_item.quantity }}" 
+                                        readonly
+                                    >
+                                    <button id="increase_btn_{{ cart_item.id }}">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {%endfor %}
+            </div>
+            <div class="checkout">
+                <div class="subtotal">
+                    <h3>Total: </h3>
+                    <h4 id="cart_subtotal">₹ {{ cart_subtotal }}</h4>
+                </div>
+                <div class="checkout_btn">
+                    {% if cart_items %}
+                        <button id="rzp-button1" >Review & order</button>
+                    {%  else %}
+                        <button>Review & order</button>
+                    {% endif %}
+
+
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Add Address Model -->
+
+<div id="addAddressModel" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close">&times;</span>
+
+        <form id="addAddressForm" method="post" class="modal-form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Save Address</button>
+        </form>
+    </div>
+
+</div>
+
+<!-- Edit Address Model -->
+
+<div id="editAddressModel" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" id="edit_close">&times;</span>
+
+        <form id="editAddressForm" method="post" class="modal-form">
+            {% csrf_token %}
+            {{ edit_form }}
+            <button type="submit">Update Address</button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+<script defer src="{% static 'customer/js/checkout.js'%}"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "rzp_test_OO7T4SNLnG9J0B", // Enter the Key ID generated from the Dashboard
+            "amount": "{{ payment.amount }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Acme Corp",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": "{{ payment.id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response){
+
+                window.location.href = `http://127.0.0.1:8000/success/?razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}`
+                
+            },
+        
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response){
+                alert(response.error.code);
+                alert(response.error.description);
+                alert(response.error.source);
+                alert(response.error.step);
+                alert(response.error.reason);
+                alert(response.error.metadata.order_id);
+                alert(response.error.metadata.payment_id);
+        });
+        document.getElementById('rzp-button1').onclick = function(e){
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+
+{% endblock %}

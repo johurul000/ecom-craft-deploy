@@ -1,0 +1,65 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'customer/css/orderpage.css' %}">
+<title>Orders</title>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="main">
+    <h1>Orders</h1>
+    <div class="order_list">
+        {% if order_items %}
+            <div class="product_list">
+                {% for order_item in order_items %}
+                    <div class="product">
+                        
+                        <div class="order_id">
+                            <p>Order Id: {{ order_item.order.order_id }}</p>
+                        </div>
+                        
+                        <div class="item_details">
+                            <div class="image">
+                                <img src="{{ order_item.product.product_image.url }}" alt="">
+                            </div>
+                            <div class="product_details">
+                                
+                                <div class="product_name">
+                                    <p>{{ order_item.product.product_name }}</p>
+                                </div>
+                                <div class="product_price">
+                                    <p>₹ {{ order_item.product.price }}</p>
+                                </div>
+                                <div class="product_quantity">
+                                    <p>Quantity: {{ order_item.quantity }}</p>
+                                </div>
+                                
+                            </div>
+                            <div class="delivery_status">
+                                {% if order_item.order.is_delivered %}
+                                    <p class="delivered">Delivered</p>
+                                {% else %}
+                                    <p class="on-the-way">On the Way</p>
+                                {% endif %}
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No Order Items.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+

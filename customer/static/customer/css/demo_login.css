@@ -1,0 +1,165 @@
+/* Base Styling */
+body {
+    background-color: #111111;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container and Alignment */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Card Styling */
+.card {
+    background-color: rgba(41, 41, 41, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2), 0 2px 4px rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+/* Card Header */
+.card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+}
+
+.card-header ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-item {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-link {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-bottom-color 0.3s;
+}
+
+.nav-link.active {
+    color: #2563eb;
+    border-bottom-color: #2563eb;
+}
+
+.nav-link:hover {
+    color: rgb(224, 224, 224);
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background-color: rgba(51, 51, 51, 0.95);
+    color: white;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    padding: 10px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #2547a7;
+}
+
+/* Alert Styling */
+.alert {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+}
+
+.alert a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.alert a:hover {
+    color: #2547a7;
+    text-decoration: underline;
+}
+
+/* Tab Content */
+.tab-content {
+    margin-top: 15px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        padding: 15px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+}
