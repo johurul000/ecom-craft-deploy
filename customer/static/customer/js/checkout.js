@@ -18,12 +18,6 @@ document.addEventListener('DOMContentLoaded', function(){
         addAddressModel.style.display = 'none'
     }
 
-    // window.onclick = function (event) {
-    //     if (event.target == addAddressModel){
-    //         addAddressModel.style.display = 'none'
-    //     }
-    // }
-
 
     document.getElementById('addAddressForm').addEventListener('submit', function(event){
         event.preventDefault()
@@ -135,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function(){
             if(data.success){
                 console.log('Default address updated')
 
-                // Adding the selected address and hiding the other address lists.
 
                 addressSection.style.display = 'none'
                 selectedAddress.style.display = 'flex'

@@ -1,6 +1,5 @@
 const csrfToken = document.querySelector('meta[name="csrf-token"]').content
 
-// Get the modals
 var addNameModal = document.getElementById('addNameModel')
 var editNameModal = document.getElementById('editNameModel')
 var editEmailModal = document.getElementById('editEmailModel')
@@ -9,7 +8,6 @@ var editPhoneModal = document.getElementById('editPhoneModel')
 var changePasswordModel = document.getElementById('changePasswordModel')
 
 
-// Get the buttons
 var addNameBtn = document.getElementById('add_name')
 var editNameBtn = document.getElementById('edit_name')
 var editEmailBtn = document.getElementById('edit_email')
@@ -17,20 +15,16 @@ var addPhoneBtn = document.getElementById('add_phone')
 var editPhoneBtn = document.getElementById('edit_phone')
 var changePasswordBtn = document.getElementById('change_password')
 
-// Get the close buttons
 var closeBtns = document.querySelectorAll('.close');
 
-// Function to open modal
 function openModal(modal) {
     modal.style.display = 'block';
 }
 
-// Function to close modal
 function closeModal(modal) {
     modal.style.display = 'none';
 }
 
-// Event listeners for buttons
 if (addNameBtn){
     addNameBtn.addEventListener('click', function() {
         openModal(addNameModal)
@@ -280,7 +274,6 @@ changePasswordBtn.addEventListener('click', function(){
 
 })
 
-// Event listeners for close buttons
 closeBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
         var modal = this.parentElement.parentElement;
@@ -288,7 +281,6 @@ closeBtns.forEach(function(btn) {
     });
 });
 
-// Close modal when clicking outside of it
 window.addEventListener('click', function(event) {
     if (event.target == editNameModal ||
         event.target == editEmailModal ||

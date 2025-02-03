@@ -21,7 +21,7 @@ body {
 
   .order-success-container h2 {
     font-size: 2rem;
-    color: #4caf50; /* Green color for success */
+    color: #4caf50; 
     margin-bottom: 20px;
   }
 
@@ -55,7 +55,7 @@ body {
   .check-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* This ensures the image maintains its aspect ratio while fitting the container */
+    object-fit: contain; 
   }
 
   .back-to-shop-btn {

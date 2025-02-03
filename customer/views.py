@@ -1,5 +1,5 @@
 from django.db.models.query import QuerySet
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 from django.views.generic import ListView
 from django.contrib.auth import authenticate, login, logout
@@ -21,6 +21,8 @@ from django.db.models import Sum
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.core.cache import cache
+from django.contrib import messages
 
 
 # Create your views here.
@@ -58,7 +60,6 @@ class SignUpView(View):
                 'message': "Passwords does not match."
             }
         else:
-            # hashed_password = make_password(password)
             my_user = CustomUser.objects.create_user(email=email, username=username, password=password)
             my_user.save()
             return redirect(self.success_url)
@@ -134,15 +135,14 @@ class HomeView(View):
 
     def get(self, request):
         user = request.user
-        item_count = 0  # Default value if the user is not authenticated
+        item_count = 0  
         
         if user.is_authenticated:
             try:
                 cart = Cart.objects.get(user=user)
                 item_count = cart.cartitem_set.count()
             except Cart.DoesNotExist:
-                item_count = 0  # If the cart doesn't exist, set item count to 0
-
+                item_count = 0  
         context = {
             'user': user,
             'item_count': item_count
@@ -166,20 +166,16 @@ class ShopView(View):
     def get(self, request):
         user = request.user
 
-        # Fetch all products
         products = Product.objects.all()
 
         if user.is_authenticated:
-            # Fetch the user's cart or create a new one if it doesn't exist
             cart = Cart.objects.filter(user=user).first()
             if not cart:
-                # Optionally create a cart if none exists for the user
                 cart = Cart.objects.create(user=user)
 
-            # Calculate the total quantity in the cart
             item_count = cart.cartitem_set.aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
         else:
-            item_count = 0  # For unauthenticated users, cart item count is 0
+            item_count = 0  
 
         context = {
             'products': products,
@@ -221,10 +217,8 @@ class AddCartShopAjax(View):
             try:
                 data = json.loads(request.body)
                 product_id = data.get('product_id')
-                # product_id = int(product_id)
             except json.JSONDecodeError:
                 return JsonResponse({'error': 'Invalid Json Data'}, status=400)
-            # product_id = request.POST.get('product_id')
             print(product_id)
             print(type(product_id))
 
@@ -296,14 +290,11 @@ class CartItemListView(View):
 class FetchProductsDetailsView(View):
     def post(self, request, *args, **kwargs):
         try:
-            # Parse JSON data from request body
             data = json.loads(request.body)
             product_ids = data.get('product_ids', [])
             
-            # Fetch products based on IDs
             products = Product.objects.filter(id__in=product_ids)
             
-            # Prepare the response data
             products_data = [
                 {
                     'id': product.id,
@@ -376,85 +367,121 @@ class CheckOutView(View):
     def get(self, request):
         form = DeliveryAddressForm()
         try:
-            addresses = DeliveryAddress.objects.filter(user=self.request.user)
-            default_address = DeliveryAddress.objects.get(user=self.request.user, is_default=True)
+            addresses = DeliveryAddress.objects.filter(user=request.user)
+            default_address = DeliveryAddress.objects.get(user=request.user, is_default=True)
         except ObjectDoesNotExist:
             addresses = []
             default_address = None
+        
         edit_form = DeliveryAddressForm(prefix='edit')
-
-        cart = Cart.objects.get(user=self.request.user)
-        cart_items = cart.cartitem_set.all()
-        item_count = cart.cartitem_set.aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
-
-
-        cart_subtotal = float(sum(item.subtotal() for item in cart_items))
-
+        product_id = request.GET.get('product_id')
+        cart_items = []
+        cart_subtotal = 0
+        
+        if product_id:
+            single_product = get_object_or_404(Product, id=product_id)
+            cart_subtotal = float(single_product.price)
+            cart_items = [{'product': single_product, 'quantity': 1, 'subtotal': cart_subtotal}]
+            item_count = 1 
+        else:
+            cart = Cart.objects.get(user=request.user)
+            cart_items = cart.cartitem_set.all()
+            cart_subtotal = float(sum(item.subtotal() for item in cart_items))
+            item_count = cart.cartitem_set.aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+        
         if cart_subtotal < 1:
             cart_subtotal = 1.00
-
-        client = razorpay.Client(auth = (settings.KEY, settings.SECRET))
-        data = { "amount": cart_subtotal*100, "currency": "INR", 'payment_capture': 1 }
-        payment = client.order.create(data=data)
         
-        cart.razor_pay_order_id = payment['id']
-        cart.save()
+        cached_order = cache.get(f'razorpay_order_{request.user.id}')
+        if cached_order:
+            payment = cached_order
+        else:
+            try:
+                client = razorpay.Client(auth=(settings.KEY, settings.SECRET))
+                data = {"amount": int(cart_subtotal * 100), "currency": "INR", 'payment_capture': 1}
+                payment = client.order.create(data=data)
 
+                if not product_id:
+                    cart.razor_pay_order_id = payment['id']
+                    cart.save()
 
+                cache.set(f'razorpay_order_{request.user.id}', payment, timeout=300)
+            except razorpay.errors.BadRequestError:
+                messages.error(request, "Too many payment requests. Please try again after a few minutes.")
+                return redirect('checkout')  
         context = {
             'form': form, 
             'edit_form': edit_form, 
             'addresses': addresses,
             'cart_items': cart_items,
-            'item_count': item_count,
             'cart_subtotal': cart_subtotal,
             'default_address': default_address,
-            'payment': payment
+            'payment': payment if 'payment' in locals() else None,
+            'is_single_product': bool(product_id),
+            'single_product': single_product if product_id else None,
+            'item_count': item_count
+
         }
-
+        
         return render(request, 'customer/checkout.html', context)
-    
 
     
 
+@method_decorator(login_required, name='dispatch')
 class OrderSuccessView(View):
     def get(self, request):
         payment_id = request.GET.get('razorpay_payment_id')
         order_id = request.GET.get('razorpay_order_id')
         payment_signature = request.GET.get('razorpay_signature')
-
-        cart = Cart.objects.get(razor_pay_order_id=order_id)
-
-        cart_items = cart.cartitem_set.all()
-
-        delivery_address = DeliveryAddress.objects.filter(user=request.user, is_default=True).first()
-
-    
-        order = Order.objects.create(
-            user = cart.user,
-            order_id = order_id,
-            payment_id = payment_id,
-            payment_signature  = payment_signature,
-            order_total_price=sum(item.subtotal() for item in cart_items),
-            order_total_quantity=sum(item.quantity for item in cart_items),
-            payment_mode = 'razorpay',
-            delivery_address = delivery_address
-        )
-
-        for cart_item in cart_items:
-            OrderItem.objects.create(
-                order=order,
-                product=cart_item.product,
-                quantity=cart_item.quantity
-            )
         
+        cart = Cart.objects.filter(razor_pay_order_id=order_id).first()
+        product_id = request.GET.get('product_id')
+        
+        if product_id:
+            single_product = get_object_or_404(Product, id=product_id)
+            cart_items = [{'product': single_product, 'quantity': 1, 'subtotal': single_product.price}]
+            order_total_price = single_product.price
+            order_total_quantity = 1
+        else:
+            cart_items = cart.cartitem_set.all()
+            order_total_price = sum(item.subtotal() for item in cart_items)
+            order_total_quantity = sum(item.quantity for item in cart_items)
+        
+        delivery_address = DeliveryAddress.objects.filter(user=request.user, is_default=True).first()
+        
+        order = Order.objects.create(
+            user=request.user,
+            order_id=order_id,
+            payment_id=payment_id,
+            payment_signature=payment_signature,
+            order_total_price=order_total_price,
+            order_total_quantity=order_total_quantity,
+            payment_mode='razorpay',
+            delivery_address=delivery_address
+        )
+        
+        if product_id:
+            
+            for item in cart_items:
+                OrderItem.objects.create(
+                    order=order,
+                    product=item['product'],
+                    quantity=item['quantity']
+                )
+        else:
+            for item in cart_items:
+                OrderItem.objects.create(
+                    order=order,
+                    product=item.product,
+                    quantity=item.quantity
+                )
+            
 
-        cart.cartitem_set.all().delete()
-
-        context = {
-            'order': order
-        }
-
+        
+        if cart:
+            cart.cartitem_set.all().delete()
+        
+        context = {'order': order}
         return render(request, 'customer/order_success.html', context)
 
 
@@ -537,7 +564,7 @@ class EditAddressView(View):
             address.state = form.cleaned_data['state']
             address.country = form.cleaned_data['country']
             address.postcode = form.cleaned_data['postcode']
-            address.is_default = form.cleaned_data['is_default']
+            # address.is_default = form.cleaned_data['is_default']
             address.save()
             return JsonResponse({'success': True})
         else:
@@ -558,22 +585,9 @@ class DeleteAddressView(View):
 class OrderListView(View):
     def get(self, request):
         
-        # orders = Order.objects.filter(user=request.user).order_by('-order_date')
 
         order_items = OrderItem.objects.filter(order__user=request.user)
         
-
-        # order_details = []
-
-        # for order in orders:
-        #     order_items = order.orderitem_set.all()
-
-        #     order_info = {
-        #         'order': order,
-        #         'order_items': order_items
-        #     }
-
-        #     order_details.append(order_info)
 
         cart = Cart.objects.get(user=self.request.user)
         item_count = cart.cartitem_set.count()
@@ -635,21 +649,17 @@ class EditUserEmail(View):
         try:
             email = data.get('email')
 
-            # Validate email format
             if not email:
                 raise ValueError('Email address is required')
             
 
-            # Check email availability
             if CustomUser.objects.exclude(pk=request.user.pk).filter(email=email).exists():
                 raise ValueError('Email address is already in use')
 
-            # Update email address
             user = request.user
             user.email = email
             user.save()
 
-            # Update session if necessary
             update_session_auth_hash(request, user)
 
             return JsonResponse({'success': True})
@@ -716,7 +726,9 @@ class ListAddressView(View):
         form = DeliveryAddressForm()
         addresses = DeliveryAddress.objects.filter(user=self.request.user)
         default_address = DeliveryAddress.objects.get(user=self.request.user, is_default=True)
+
         edit_form = DeliveryAddressForm(prefix='edit')
+        del edit_form.fields['is_default']
 
         context = {
             'addresses': addresses,

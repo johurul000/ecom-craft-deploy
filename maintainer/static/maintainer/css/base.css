@@ -3,7 +3,6 @@
     padding: 0;
 }
 
-/* #1F1F1F  #181818 */
 body {
     background-color: #181818;
     color: whitesmoke;
@@ -68,7 +67,6 @@ body {
     max-width: 150px;            
 }
 
-/* Initially hide dropdown menu */
 .dropdown_menu {
     display: none;
     position: absolute;
@@ -154,9 +152,7 @@ body {
     list-style-type: none;
 }
 
-/* .logout-div {
-    width: auto;
-} */
+
   
 .sidebar-list-item {
     padding: 20px 20px 20px 20px;

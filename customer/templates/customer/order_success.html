@@ -9,22 +9,18 @@
 </head>
 <body>
     <div class="order-success-container">
-        <!-- Checkmark icon -->
         <div class="check-image">
           <img src="{% static 'customer/images/check.png' %}" alt="Success Check">
         </div>
         
-        <!-- Success message -->
         <h2>Order Successful!</h2>
         
-        <!-- Order details -->
         <ul class="order-details">
           <li><strong>Order Id:</strong> {{ order.order_id }}</li>
           <li><strong>Total Price:</strong> ₹{{ order.order_total_price }}</li>
           <li><strong>Total Quantity:</strong> {{ order.order_total_quantity }}</li>
         </ul>
       
-        <!-- Back to Shop Button -->
         <a href="{% url 'shop' %}">
           <button class="back-to-shop-btn">Back to Shop</button>
         </a>
@@ -32,4 +28,3 @@
 </body>
 </html>
 
-<!-- <img src="{% static 'customer/images/check.png' %}" alt=""> -->

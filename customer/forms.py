@@ -16,16 +16,7 @@ class DeliveryAddressForm(forms.ModelForm):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             prefix = kwargs.get('prefix', '')
-            # self.prefix = prefix
             for field_name in self.fields:
                 self.fields[field_name].widget.attrs['id'] = f"{prefix}_{field_name}"
 
-        # def __init__(self, *args, **kwargs):
-        #     prefix = kwargs.pop('prefix', '')
-        #     super().__init__(*args, **kwargs)
-        #     self.prefix = prefix
-
-        # def id_for_label(self, id_):
-        #     if self.prefix:
-        #         return f'id_{self.prefix}_{id_}'.replace('-', '_')
-        #     return super().id_for_label(id_)
+        

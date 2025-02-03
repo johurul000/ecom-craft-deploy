@@ -97,9 +97,9 @@ h2 {
 .product-card h3 {
     margin: 10px 0;
     color: #333;
-    font-size: 16px; /* Adjust font size if needed */
-    line-height: 1.2em; /* Adjust line height if needed */
-    height: 2.4em; /* Limit to 2 lines (line-height * 2) */
+    font-size: 16px;
+    line-height: 1.2em; 
+    height: 2.4em; 
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -112,10 +112,10 @@ h2 {
 .product-card p {
     margin: 5px 0;
     color: #777;
-    font-size: 14px; /* Adjust font size if needed */
+    font-size: 14px; 
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; /* Ensure the text does not wrap to a new line */
+    white-space: nowrap; 
     cursor: pointer;
 }
 

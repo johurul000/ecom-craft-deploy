@@ -19,10 +19,9 @@
 
             </div>
             <div class="nav_links">
-                <a href="{% url 'shop' %}" class="shop_link">Shop</a> <!-- Shop Link -->
+                <a href="{% url 'shop' %}" class="shop_link">Shop</a> 
                 
                 {% if user.is_authenticated %}
-                <!-- Display username and image as a dropdown menu -->
                 <div class="user_account" onclick="toggleDropdown()">
                     <img src="{% static 'customer/images/user.png' %}" alt="" class="user_image">
                     <span class="username">{{ user.username }}</span>
@@ -32,7 +31,6 @@
                     </div>
                 </div>
                 {% else %}
-                <!-- Show login/signup if user is not logged in -->
                 <a href="{% url 'login' %}" class="auth_link">Login</a> /
                 <a href="{% url 'signup' %}" class="auth_link">Sign Up</a>
                 {% endif %}
@@ -56,5 +54,4 @@
 </body>
 </html>
 
-<!-- <img src="{% static 'customer/images/user.png' %}" alt=""> -->
 

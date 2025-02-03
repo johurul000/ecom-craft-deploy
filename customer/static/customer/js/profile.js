@@ -59,7 +59,6 @@ securityDiv.addEventListener('click', function(){
 
 
 
-// Event listeners for close buttons
 closeBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
         var modal = this.parentElement.parentElement;
@@ -67,7 +66,6 @@ closeBtns.forEach(function(btn) {
     });
 });
 
-// Close modal when clicking outside of it
 window.addEventListener('click', function(event) {
     if (event.target == checkPasswordModel) {
         event.target.style.display = 'none'

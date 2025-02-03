@@ -17,12 +17,13 @@ urlpatterns = [
     path('update-cartitem-quantity/', CartItemUpdateView.as_view(), name='update-cartitem-quantity'),
     path('fetch-products-details/', FetchProductsDetailsView.as_view(), name='fetch-products-details'),
 
-    path('checkout/', CheckOutView.as_view(), name='checkout'),
+    path('checkout/', CheckOutView.as_view(), name='checkout'), 
     path('add-address/', AddAddressView.as_view(), name='add-address'),
     path('set-default-address/<int:address_id>', SetDefaultAddressView.as_view(), name='set-default-address'),
     path('edit-address/<int:address_id>', EditAddressView.as_view(), name='edit-address'),
     path('delete-address/<int:address_id>', DeleteAddressView.as_view(), name='delete-address'),
     path('success/', OrderSuccessView.as_view(), name='success'),
+    path('single-success/', OrderSuccessView.as_view(), name='single-success'),
 
     path('orders/', OrderListView.as_view(), name='orders'),
     path('customer-info/', CustomerInfoView.as_view(), name='customer-info'),

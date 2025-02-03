@@ -176,19 +176,16 @@ document.addEventListener('DOMContentLoaded', function () {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         if (cart.length > 0) {
-            // Hide the empty cart message
             const emptyCartMessage = document.getElementById('empty_cart_message');
             if (emptyCartMessage) {
                 emptyCartMessage.style.display = 'none';
             }
 
-            // Show the checkout section
             const checkoutSection = document.getElementById('checkout_section');
             if (checkoutSection) {
                 checkoutSection.style.display = 'block';
             }
 
-            // Update the cart subtotal
             let cartSubtotal = 0;
             const productIds = cart.map(item => item.productId);
 
@@ -207,12 +204,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     
                     const cartMap = new Map(cart.map(item => [item.productId, item]));
                     const cartItem = cartMap.get(String(product.id));
-                    // const cartItem = cart.find(item => item.productId === product.id);
                     cartSubtotal += product.price * cartItem.quantity;
                     addToCartDom(product, cartItem.quantity);
                 });
 
-                // Update subtotal in the DOM
+                // Update subtotal in the DOM itself
                 const cartSubtotalElement = document.getElementById('cart_subtotal');
                 if (cartSubtotalElement) {
                     cartSubtotalElement.textContent = `₹ ${cartSubtotal}`;
@@ -259,10 +255,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             </div>`;
         
-        // Append the cart item to the DOM
         cartItemsContainer.insertAdjacentHTML('beforeend', cartItemHtml);
 
-        // Attach event listeners to the new cart item buttons (similar to your existing code)
         attachEventListenersToNewItem(product.id);
     }
 

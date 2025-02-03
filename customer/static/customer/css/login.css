@@ -1,7 +1,6 @@
-/* General Styles */
 body {
-    background-color: #111111; /* Dark background */
-    color: white; /* Text color */
+    background-color: #111111; 
+    color: white; 
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -10,7 +9,6 @@ body {
     margin: 0;
 }
 
-/* Wrapper for login form */
 .login-wrapper {
     display: flex;
     flex-direction: column;
@@ -21,9 +19,8 @@ body {
     padding: 1rem;
 }
 
-/* Login Container */
 form {
-    background-color: #1a1a1a; /* Slightly lighter dark background */
+    background-color: #1a1a1a; 
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.2), 0 2px 4px -1px rgba(255, 255, 255, 0.1);
@@ -33,7 +30,6 @@ form {
     gap: 1rem;
 }
 
-/* Form Group */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -58,14 +54,13 @@ input[type="password"] {
 input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
-    border-color: #2563eb; /* Bluish highlight */
+    border-color: #2563eb; 
     box-shadow: 0 0 5px #2563eb;
 }
 
-/* Submit Button */
 button[type="submit"] {
     padding: 10px 15px;
-    background-color: #2563eb; /* Bluish button */
+    background-color: #2563eb; 
     color: white;
     font-size: 1rem;
     font-weight: bold;
@@ -76,10 +71,9 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #1e3a8a; /* Darker blue on hover */
+    background-color: #1e3a8a; 
 }
 
-/* Links */
 .links {
     text-align: center;
     margin-top: 1rem;
@@ -96,7 +90,6 @@ button[type="submit"]:hover {
     text-decoration: underline;
 }
 
-/* Error Message */
 .error-message {
     color: red;
     font-size: 1rem;

@@ -1,6 +1,4 @@
-/* Home Page Styling */
 .hero {
-    /* background-image: url('{% static "customer/images/hero_banner.jpg" %}'); */
     background-size: cover;
     background-position: center;
     height: 100vh;

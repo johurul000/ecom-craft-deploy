@@ -35,12 +35,12 @@ nav {
     color: white;
     font-size: 1rem;
     font-weight: bold;
-    margin-right: 20px; /* Add margin for spacing */
+    margin-right: 20px; 
     text-decoration: none;
 }
 
 .shop_link:hover {
-    color: #2563eb; /* Change color on hover */
+    color: #2563eb; 
 }
 
 .auth_link {
@@ -48,19 +48,18 @@ nav {
     font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
-    margin-right: 10px; /* Adjust spacing between links */
+    margin-right: 10px; 
     transition: color 0.3s ease-in-out;
 }
 
 .auth_link:hover {
-    color: #2563eb; /* Change color on hover */
+    color: #2563eb; 
 }
 
 .auth_link:active {
-    color: #2547a7; /* Slightly darker color on click */
+    color: #2547a7; 
 }
 
-/* Same styling as before for the user account and dropdown */
 .user_account {
     display: flex;
     align-items: center;
@@ -114,7 +113,7 @@ nav {
     display: block;
 }
 
-/* Cart button styling */
+
 .cart_btn {
     padding: 5px 10px;
     font-size: 0.9rem;

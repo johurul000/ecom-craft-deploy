@@ -33,10 +33,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px; 
 }
-  
+
 .card-inner > .material-icons-outlined {
-    font-size: 45px;    
+    font-size: 35px; 
 }
   
 
@@ -51,4 +52,15 @@
       margin-bottom: 0;
     }
   
+}
+
+@media screen and (max-width: 1383px) {
+    .card-inner {
+        flex-direction: column; /* Stack text and icon vertically */
+        align-items: center;
+    }
+    .card-inner > .material-icons-outlined {
+        font-size: 30px; /* Further reduce size if needed */
+        margin-top: 10px;
+    }
 }

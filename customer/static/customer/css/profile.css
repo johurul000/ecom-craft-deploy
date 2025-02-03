@@ -1,4 +1,3 @@
-/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -11,11 +10,10 @@ body {
     align-items: center;
     flex-direction: column;
     font-family: Arial, sans-serif;
-    background-color: #111111; /* Dark background */
-    color: #f5f5f5; /* Light text */
+    background-color: #111111; 
+    color: #f5f5f5; 
 }
 
-/* Main Section */
 .main {
     width: 90%;
     max-width: 1000px;
@@ -30,11 +28,10 @@ body {
     text-align: center;
     font-size: 1.8rem;
     font-weight: bold;
-    color: #f5f5f5; /* Light text */
+    color: #f5f5f5; 
     margin-bottom: 10px;
 }
 
-/* Card Section */
 .card_section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -42,22 +39,21 @@ body {
     padding: 20px;
 }
 
-/* Card Styling */
 .card {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 20px;
     border-radius: 10px;
-    background-color: #1f2937; /* Dark gray background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    background-color: #1f2937; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    background-color: #374151; /* Slightly lighter dark gray */
+    background-color: #374151; 
 }
 
 .img_div img {
@@ -72,15 +68,14 @@ body {
 .card_details h4 {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #f5f5f5; /* Light text */
+    color: #f5f5f5; 
 }
 
 .card_details p {
     font-size: 0.9rem;
-    color: #a0a0a0; /* Lighter gray for secondary text */
+    color: #a0a0a0; 
 }
 
-/* Modal Styling */
 .modal {
     display: none;
     position: fixed;
@@ -88,21 +83,21 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Dark semi-transparent overlay */
+    background: rgba(0, 0, 0, 0.8); 
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
 .modal-content {
-    background-color: #1f2937; /* Dark gray background */
+    background-color: #1f2937; 
     padding: 2rem;
     border-radius: 12px;
     width: 400px;
     max-width: 90%;
     text-align: center;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Stronger shadow for focus */
-    color: #f5f5f5; /* Light text */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
+    color: #f5f5f5; 
 }
 
 .modal-content h3 {
@@ -122,7 +117,7 @@ body {
 }
 
 .modal-content .close:hover {
-    color: #ff4d4d; /* Red hover effect */
+    color: #ff4d4d; 
 }
 
 .modal-form {
@@ -134,15 +129,15 @@ body {
 .modal-form input {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #374151; /* Subtle border */
+    border: 1px solid #374151; 
     border-radius: 8px;
     width: 100%;
-    background-color: #1c1f24; /* Slightly lighter dark gray */
-    color: #f5f5f5; /* Light text */
+    background-color: #1c1f24; 
+    color: #f5f5f5; 
 }
 
 .modal-form input::placeholder {
-    color: #a0a0a0; /* Lighter gray placeholder */
+    color: #a0a0a0; 
 }
 
 .modal-form button {
@@ -152,11 +147,11 @@ body {
     border: none;
     border-radius: 8px;
     color: white;
-    background-color: #2563eb; /* Blue button */
+    background-color: #2563eb; 
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .modal-form button:hover {
-    background-color: #2547a7; /* Darker blue hover */
+    background-color: #2547a7; 
 }

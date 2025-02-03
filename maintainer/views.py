@@ -221,7 +221,6 @@ class CategoryListView(ListView):
 
     def get_queryset(self):
         queryset = Category.objects.all()
-        # Print primary keys
         for category in queryset:
             print(category.pk)
         return queryset
@@ -385,7 +384,6 @@ class EditMemberView(View):
             if not date_of_birth:
                 date_of_birth = None
 
-            # Update member information
             member.full_name = full_name
             member.email = email
             member.username = username

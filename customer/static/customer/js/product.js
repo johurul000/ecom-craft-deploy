@@ -22,22 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
     })
 
-    // addToCartButtons.forEach(button => (
-    //     button.addEventListener('click', () => {
-    //         const prodctId = button.dataset.prodctId
-
-    //         if (userIsAuthenticated) {
-    //             addToCartAjax(prodctId)
-    //         } else {
-    //             ensureCartExists()
-    //             updateCartInLocalStorage(prodctId)
-    //             updateCartDom()
-    //         }
-    //     })
-    // ))
 
     function addToCartAjax(productId) {
-        const csrfToken = document.getElementById('add_to_cart_form').querySelector('input[name="csrfmiddlewaretoken"]').value
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         const numsProductId = parseInt(productId, 10)
 
         fetch('/add-to-cart-ajax/', {
@@ -50,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Item Added To cart: ', data)
             const contCartElement = document.getElementById('cart_btn')
             contCartElement.textContent = `Cart (${data['item_count']})`
             alert('Item Added to cart')
@@ -89,6 +75,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!userIsAuthenticated) {
         updateCartDom()
     }
+
+    const buyNowButtons = document.getElementById("buy_now_btn")
+    buyNowButtons.addEventListener("click", function () {
+        const productId = this.getAttribute("data-product-id");
+        window.location.href = `/checkout/?product_id=${productId}`;
+    });
 
 
 

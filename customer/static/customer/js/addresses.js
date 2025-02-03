@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function(){
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content
 
     var addressCheckboxes = document.querySelectorAll('input[name="address_checkbox"]')
-    // const changeAddress = document.getElementById('change_address')
     const selectedAddress = document.getElementById('selected_address')
     const addressSection = document.getElementById('address_section')
     const addressHeading = document.getElementById('address_heading')
@@ -91,14 +90,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // Chang Address functionality
 
-    // changeAddress.addEventListener('click', function(){
-    //     addressSection.style.display = 'flex'
-    //     selectedAddress.style.display = 'none'
+   
 
-    //     addressHeading.innerText = 'Select Delivery Address'
-    // })
-
-    // Setting the default address to be used
+    // Setting the default address
 
     const useAddressBtn = document.getElementById('use_this_address')
 
@@ -133,22 +127,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if(data.success){
                 console.log('Default address updated')
 
-                // Adding the selected address and hiding the other address lists.
-
-                // addressSection.style.display = 'none'
-                // selectedAddress.style.display = 'flex'
-
-                // const selectedAddressParagraph = document.getElementById('selected_address_paragraph')
-
-                // const selectedAddressParagraphHTML = `
-                //     <input type="checkbox" name="" id="" checked disabled>
-                //     <p>
-                //         <span>${data.address.name}</span>, ${data.address.phone_number}, ${data.address.street}, ${data.address.city}, ${data.address.state}, ${data.address.postcode}, ${data.address.country}
-                //     </p>
-                // `
-                // selectedAddressParagraph.innerHTML = selectedAddressParagraphHTML
-
-                // addressHeading.innerText = 'Delivery Address'
+                
 
                 window.location.reload()
 
@@ -211,7 +190,6 @@ document.addEventListener('DOMContentLoaded', function(){
             editAddressForm.querySelector('#id_edit-state').value = addressState;
             editAddressForm.querySelector('#id_edit-country').value = addressCountry;
             editAddressForm.querySelector('#id_edit-postcode').value = addressPostcode;
-            editAddressForm.querySelector('#id_edit-is_default').checked = addressIsDefault;
 
             
             editAddressForm.addEventListener('submit', (event) => {
@@ -225,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 var state = editAddressForm.querySelector('#id_edit-state').value
                 var country = editAddressForm.querySelector('#id_edit-country').value
                 var postcode = editAddressForm.querySelector('#id_edit-postcode').value
-                var is_default = editAddressForm.querySelector('#id_edit-is_default').checked
 
                 const formData = {
                     name: customer_name ,
@@ -236,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function(){
                     state: state,
                     country: country,
                     postcode:postcode,
-                    is_default: is_default
                     
                 }
 

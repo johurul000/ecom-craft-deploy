@@ -7,8 +7,7 @@ nav {
     display: flex;
     flex-flow: row;
     align-items: center;
-    /* border-bottom: 1px solid white; */
-    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.2), 0 2px 4px -1px rgba(255, 255, 255, 0.1); /* White shadow */
+    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.2), 0 2px 4px -1px rgba(255, 255, 255, 0.1); 
 }
 
 .nav_item {
@@ -27,17 +26,17 @@ nav {
 }
 
 .cart_btn {
-    padding: 5px 10px; /* Adjusted for consistent padding */
+    padding: 5px 10px; 
     font-size: 0.9rem;
     font-weight: bold;
     border: none;
     border-radius: 5px;
-    background-color: #2563eb; /* Bluish button color */
+    background-color: #2563eb; 
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out; /* Smooth hover effect */
+    transition: background-color 0.3s ease-in-out; 
 }
 
 .cart_btn:hover {
-    background-color: #2547a7; /* Darker blue on hover */
+    background-color: #2547a7; 
 }
